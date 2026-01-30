@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="padding: 100px 0;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px;">
+        <div>
+            <h2 style="font-size: 3.5rem; color: var(--primary);">National Mandi Optimizer</h2>
+            <p style="font-size: 1.2rem; color: #666;">Real-time price discovery and profit maximization across 12,000+
+                markets.</p>
+        </div>
+        <div
+            style="background: white; padding: 15px 30px; border-radius: 40px; box-shadow: var(--shadow); border: 1px solid #eee;">
+            <i class="fas fa-map-marker-alt" style="color: var(--primary); margin-right: 10px;"></i> Tracking: <span
+                style="font-weight: 800; color: var(--primary);">Hyderabad Region</span>
+        </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 50px;">
+        <div class="mission-card" style="padding: 0; overflow: hidden; text-align: left;">
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead style="background: var(--primary); color: white;">
+                    <tr>
+                        <th style="padding: 25px; font-size: 1.1rem;">Commodity</th>
+                        <th style="padding: 25px; font-size: 1.1rem;">Variety</th>
+                        <th style="padding: 25px; font-size: 1.1rem;">Modal Price</th>
+                        <th style="padding: 25px; font-size: 1.1rem;">24h Trend</th>
+                    </tr>
+                </thead>
+                <tbody id="mandi-table-body">
+                    {% for p in prices %}
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 25px; font-weight: 800;">{{ p.commodity }}</td>
+                        <td style="padding: 25px; color: #666;">{{ p.variety }} ({{ p.market }})</td>
+                        <td style="padding: 25px; font-weight: 800; color: var(--primary); font-size: 1.3rem;">₹{{
+                            p.modal_price | int }}/q</td>
+                        <td
+                            style="padding: 25px; color: {% if loop.index % 2 == 0 %}#c53030{% else %}#2D5A27{% endif %}; font-weight: 700;">
+                            <i class="fas fa-arrow-{% if loop.index % 2 == 0 %}down{% else %}up{% endif %}"></i>
+                            {{ (loop.index * 1.5) | round(1) }}%
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% if not prices %}
+                    <tr>
+                        <td colspan="4" style="padding: 40px; text-align: center; color: #999;">No live prices found for
+                            today.</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <div class="mission-card"
+                style="background: linear-gradient(135deg, var(--bg-dark), #1a3a17); color: white; border: none; padding: 40px; margin-bottom: 30px;">
+                <h3 style="color: var(--accent); margin-bottom: 25px;"><i class="fas fa-star"></i> Optimization
+                    Recommendation</h3>
+                <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">Our optimizer suggests selling
+                    <strong>Cotton</strong> at <strong>Warangal Mandi</strong>. Even with transport, your profit
+                    increases by ₹250/q.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <span style="font-size: 2rem; font-weight: 800;">₹7,450/q</span>
+                    <span style="opacity: 0.7;">142km away</span>
+                </div>
+                <button class="btn-prestige btn-primary" style="width: 100%; border-radius: 20px;">Get Trade
+                    Route</button>
+            </div>
+
+            <div class="mission-card" style="padding: 30px;">
+                <h4 style="margin-bottom: 20px;">Price Alert Service</h4>
+                <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">Enter your target price. We will SMS you
+                    when the market hits it.</p>
+                <input type="number" placeholder="Set Target Price (₹)"
+                    style="width: 100%; padding: 15px; border-radius: 15px; border: 1px solid #ddd; margin-bottom: 15px;">
+                <button class="btn-prestige btn-outline"
+                    style="width: 100%; padding: 12px; font-size: 0.9rem; border-radius: 15px; color: var(--primary); border-color: var(--primary);">Set
+                    SMS Alert</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

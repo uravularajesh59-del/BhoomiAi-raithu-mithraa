@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BhoomiAI - Smart Farming Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div id="app">
+        <header>
+            <div class="header-left">
+                <div class="brand-name">Bhoomi<span style="color: var(--accent)">AI</span></div>
+                <div class="header-nav" style="margin-left: 50px; display: flex; gap: 25px;">
+                    <span onclick="switchView('home')" style="cursor:pointer; font-weight:600;">Home</span>
+                    <span onclick="switchView('advisor')" style="cursor:pointer; font-weight:600;">Advisor</span>
+                    <span onclick="switchView('mandi')" style="cursor:pointer; font-weight:600;">Mandi</span>
+                    <span onclick="switchView('disease')" style="cursor:pointer; font-weight:600;">Doctor</span>
+                </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:20px;">
+                <select class="lang-selector" id="langSelect">
+                    <option value="en">🌐 English</option>
+                    <option value="hi">🌐 हिंदी</option>
+                    <option value="te">🌐 తెలుగు</option>
+                </select>
+                <div id="header-context" style="font-weight: 600; font-size: 1rem; color: white;">
+                    Welcome, Farmer Friend 👋
+                </div>
+            </div>
+        </header>
+
+        <main id="main-content">
+            <!-- Content will be injected here by app.js -->
+        </main>
+
+        <nav class="bottom-nav">
+            <div class="nav-item active" data-view="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </div>
+            <div class="nav-item" data-view="advisor">
+                <i class="fas fa-seedling"></i>
+                <span>Advisor</span>
+            </div>
+            <div class="nav-item" data-view="mandi">
+                <i class="fas fa-store"></i>
+                <span>Mandi</span>
+            </div>
+            <div class="nav-item" data-view="disease">
+                <i class="fas fa-bug"></i>
+                <span>Doctor</span>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="js/i18n.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

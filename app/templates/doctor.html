@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="padding: 100px 0;">
+    <div style="text-align: center; margin-bottom: 60px;">
+        <h2 style="font-size: 3.5rem; color: var(--primary);">Crop Doctor AI</h2>
+        <p style="font-size: 1.2rem; color: #666;">National Computer Vision Engine for Instant Disease Diagnosis</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
+        <div id="doctor-upload">
+            <div class="mission-card"
+                style="padding: 60px; text-align: center; border: 3px dashed var(--primary-light); background: #f9fbf9;">
+                <i class="fas fa-camera-retro" style="font-size: 5rem; color: var(--primary); margin-bottom: 30px;"></i>
+                <h3 style="margin-bottom: 20px;">Upload Infected Leaf</h3>
+                <p style="color: #666; margin-bottom: 40px;">Our AI scanner detects 500+ botanical diseases with 98%
+                    accuracy.</p>
+
+                <div id="scanner-line"
+                    style="display: none; height: 5px; background: var(--primary-light); width: 100%; position: relative; top: 0; box-shadow: 0 0 20px var(--primary-light); animation: scan 2s linear infinite;">
+                </div>
+
+                <input type="file" id="doctorFileInput" style="display:none;" onchange="startMissionScan()">
+                <button class="btn-prestige btn-primary"
+                    onclick="document.getElementById('doctorFileInput').click()">Choose Image & Scan</button>
+            </div>
+        </div>
+
+        <div id="doctor-results" style="display: none;">
+            <div class="mission-card"
+                style="padding: 0; overflow: hidden; text-align: left; border: none; box-shadow: var(--shadow);">
+                <div
+                    style="height: 300px; background: url('https://images.unsplash.com/photo-1599420186946-7b6fb4e297f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;">
+                </div>
+                <div style="padding: 40px;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px;">
+                        <div>
+                            <span
+                                style="background: #fed7d7; color: #c53030; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 800;">CRITICAL
+                                ALERT</span>
+                            <h3 style="font-size: 2.5rem; color: #c53030; margin-top: 10px;">Powdery Mildew</h3>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 1.5rem; font-weight: 800; color: #2D5A27;">98.4%</div>
+                            <div style="color: #888;">AI Confidence</div>
+                        </div>
+                    </div>
+
+                    <div
+                        style="padding: 25px; background: #fff5f5; border-radius: 25px; border: 1px solid #feb2b2; margin-bottom: 30px;">
+                        <h4 style="color: #c53030; margin-bottom: 15px;"><i class="fas fa-flask"></i> Prescribed
+                            Treatment</h4>
+                        <ul style="margin-left: 20px; color: #742a2a; line-height: 1.8;">
+                            <li>Apply <strong>Wettable Sulfur</strong> (2g per liter of water).</li>
+                            <li>Prune overlapping leaves to improve air circulation.</li>
+                            <li>Avoid irrigation during high humidity hours (6 PM - 10 PM).</li>
+                        </ul>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div
+                            style="padding: 20px; background: #e6fffa; border-radius: 20px; border: 1px solid #b2f5ea;">
+                            <h5 style="color: #234e52; margin-bottom: 5px;">Natural Cure</h5>
+                            <p style="font-size: 0.85rem; color: #234e52;">Spray 1:9 milk-water solution every 10 days.
+                            </p>
+                        </div>
+                        <div
+                            style="padding: 20px; background: #ebf8ff; border-radius: 20px; border: 1px solid #bee3f8;">
+                            <h5 style="color: #2b6cb0; margin-bottom: 5px;">Market Impact</h5>
+                            <p style="font-size: 0.85rem; color: #2b6cb0;">If untreated, yield could drop by 35% in 14
+                                days.</p>
+                        </div>
+                    </div>
+
+                    <button class="btn-prestige btn-outline"
+                        style="width:100%; margin-top: 30px; color: var(--primary); border-color: var(--primary);"
+                        onclick="location.reload()">Scan Another Sample</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mission-card"
+            style="background: #eef7ee; display: flex; align-items: center; gap: 30px; height: fit-content; padding: 40px;">
+            <i class="fas fa-info-circle" style="font-size: 3rem; color: var(--primary);"></i>
+            <div style="text-align: left;">
+                <h4 style="color: var(--primary); margin-bottom: 10px;">Photography Best Practices</h4>
+                <p style="font-size: 0.95rem; color: #444;">For mission-tier accuracy, ensure clear sunlight, hold the
+                    leaf flat on your palm, and avoid shadows.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes scan {
+        0% {
+            top: 0;
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            top: 100%;
+            opacity: 0;
+        }
+    }
+</style>
+{% endblock %}

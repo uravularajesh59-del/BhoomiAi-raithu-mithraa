@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title | default("BhoomiAI") }}</title>
+    <!-- Modern Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Prestige Design System -->
+    <link rel="stylesheet" href="/static/css/prestige.css">
+</head>
+
+<body>
+    <header class="mission-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <span class="logo-text">Bhoomi<span class="accent-text">AI</span> <span
+                        style="font-size: 1.2rem; background: var(--accent); color: var(--primary); padding: 2px 10px; border-radius: 10px; margin-left: 10px;">AP
+                        Edition</span></span>
+                <span class="mission-tag">National Digital Farming Mission</span>
+            </div>
+            <nav class="prestige-nav">
+                <a href="/" class="nav-link active">Home</a>
+                <a href="/advisor" class="nav-link">Advisor</a>
+                <a href="/mandi" class="nav-link">Mandi</a>
+                <a href="/doctor" class="nav-link">Doctor</a>
+                <div class="lang-pill">
+                    <select id="langSelect">
+                        <option value="en">English</option>
+                        <option value="hi">Hindi</option>
+                        <option value="te">Telugu</option>
+                    </select>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="mission-footer">
+        <div class="container">
+            <p>&copy; 2026 BhoomiAI National Mission. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/mission.js"></script>
+</body>
+
+</html>

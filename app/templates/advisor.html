@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="padding: 100px 0;">
+    <div style="text-align: center; margin-bottom: 60px;">
+        <h2 style="font-size: 3.5rem; color: var(--primary);">Smart Crop Advisor</h2>
+        <p style="font-size: 1.2rem; color: #666;">National AI Engine for Precision Crop Selection</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: start;">
+        <div id="advisor-form" class="mission-card" style="text-align: left; padding: 50px;">
+            <div style="margin-bottom: 30px;">
+                <label style="display:block; margin-bottom: 10px; font-weight: 700; color: var(--primary);">Village /
+                    District</label>
+                <input type="text" id="districtInput" placeholder="Enter your region"
+                    style="width:100%; padding: 20px; border-radius: 20px; border: 2px solid #eee; font-size: 1.1rem; outline: none; transition: 0.3s;"
+                    onfocus="this.style.borderColor='var(--primary-light)'">
+            </div>
+            <div style="margin-bottom: 30px;">
+                <label style="display:block; margin-bottom: 10px; font-weight: 700; color: var(--primary);">Current
+                    Season</label>
+                <select id="seasonSelect"
+                    style="width:100%; padding: 20px; border-radius: 20px; border: 2px solid #eee; font-size: 1.1rem; background: white;">
+                    <option value="kharif">Kharif (Monsoon)</option>
+                    <option value="rabi">Rabi (Winter)</option>
+                    <option value="zaid">Zaid (Summer)</option>
+                </select>
+            </div>
+            <div style="margin-bottom: 40px;">
+                <label style="display:block; margin-bottom: 10px; font-weight: 700; color: var(--primary);">Land Size
+                    (Acres)</label>
+                <input type="number" id="landInput" placeholder="e.g. 5"
+                    style="width:100%; padding: 20px; border-radius: 20px; border: 2px solid #eee; font-size: 1.1rem;">
+            </div>
+            <button class="btn-prestige btn-primary" style="width: 100%;" onclick="runPrestigeAdvisor()">Generate
+                National Advice</button>
+        </div>
+
+        <div id="advisor-results" style="display: none;">
+            <div class="mission-card"
+                style="background: white; border-left: 15px solid var(--primary); text-align: left; padding: 60px;">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px;">
+                    <div>
+                        <span
+                            style="background: var(--primary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">TOP
+                            AI PICK</span>
+                        <h3 id="rec-crop-name" style="font-size: 3.5rem; margin-top: 10px;">Cotton (Kapas)</h3>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: var(--primary-light);">₹48,500/acre
+                        </div>
+                        <div style="color: #888;">Est. Profit</div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px;">
+                    <div style="background: #f0f7f0; padding: 25px; border-radius: 25px;">
+                        <strong style="display:block; color: var(--primary); margin-bottom: 10px;"><i
+                                class="fas fa-calendar-alt"></i> Sowing Window</strong>
+                        <span id="rec-sowing" style="font-size: 1.2rem; font-weight: 700;">June 15 - July 10</span>
+                    </div>
+                    <div style="background: #f0f7f0; padding: 25px; border-radius: 25px;">
+                        <strong style="display:block; color: var(--primary); margin-bottom: 10px;"><i
+                                class="fas fa-tint"></i> Water Needs</strong>
+                        <span id="rec-water" style="font-size: 1.2rem; font-weight: 700;">Medium (Rainfed)</span>
+                    </div>
+                </div>
+
+                <div
+                    style="padding: 30px; background: #fff9e6; border-radius: 25px; border: 1px solid #ffeeba; margin-bottom: 40px;">
+                    <h4 style="color: #856404; margin-bottom: 10px;"><i class="fas fa-lightbulb"></i> National Mission
+                        Insight</h4>
+                    <p style="color: #856404; line-height: 1.6;">Our AI models forecast a 12% price increase for this
+                        crop in your regional Mandi due to Export-Import policy changes.</p>
+                </div>
+
+                <button class="btn-prestige btn-outline" style="color: var(--primary); border-color: var(--primary);"
+                    onclick="location.reload()">Start New Analysis</button>
+            </div>
+        </div>
+
+        <div id="advisor-placeholder" class="mission-card"
+            style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: #eef7ee; border: none;">
+            <i class="fas fa-robot"
+                style="font-size: 5rem; color: var(--primary); opacity: 0.2; margin-bottom: 30px;"></i>
+            <p style="color: #6a8e6a; font-weight: 600; font-size: 1.2rem; text-align: center;">Ready to process
+                agricultural data.<br>Fill the form to begin.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
