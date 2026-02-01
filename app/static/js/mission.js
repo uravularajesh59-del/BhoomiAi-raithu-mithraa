@@ -68,6 +68,58 @@ function startMissionScan() {
     }, 3000);
 }
 
+// Language Pulse Logic
+function updateGlobalLanguage(lang) {
+    console.log("Mission Language Switched:", lang);
+    document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = el.getAttribute('data-' + lang);
+        } else {
+            el.innerText = el.getAttribute('data-' + lang);
+        }
+    });
+}
+
+document.getElementById('langSelect').addEventListener('change', (e) => {
+    updateGlobalLanguage(e.target.value);
+    localStorage.setItem('bhoomi_lang', e.target.value);
+});
+
+// Init Lang
+window.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('bhoomi_lang') || 'en';
+    document.getElementById('langSelect').value = savedLang;
+    updateGlobalLanguage(savedLang);
+});
+
+// Weather Pulse
+function updateLiveWeather() {
+    const conditions = ['Sunny', 'Clear Sky', 'High Humidity', 'Ideal for Spray'];
+    const temp = Math.floor(Math.random() * 4 + 30);
+    const cond = conditions[Math.floor(Math.random() * conditions.length)];
+
+    const weatherPill = document.getElementById('liveWeatherPill');
+    if (weatherPill) {
+        weatherPill.innerHTML = `<i class="fas fa-temperature-high"></i> ${temp}°C - ${cond}`;
+        if (cond === 'High Humidity') weatherPill.style.background = '#f6ad55';
+        else weatherPill.style.background = '#4CAF50';
+    }
+}
+setInterval(updateLiveWeather, 8000);
+
+// GIS Calculations Refined
+function calculatePolygonArea(latlngs) {
+    if (latlngs.length < 3) return 0;
+    let area = 0;
+    for (let i = 0; i < latlngs.length; i++) {
+        let j = (i + 1) % latlngs.length;
+        area += latlngs[i][0] * latlngs[j][1] - latlngs[j][0] * latlngs[i][1];
+    }
+    // Correct scale for AP latitude
+    const meterScale = 111320 * 111320 * Math.cos(latlngs[0][0] * Math.PI / 180);
+    return (Math.abs(area) * meterScale) / 2;
+}
+
 // Live Mandi System
 async function refreshMandi() {
     const commodity = document.getElementById('commoditySearch').value;

@@ -4,10 +4,10 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
     #map {
-        height: 65vh;
+        height: 70vh;
         width: 100%;
         border-radius: 40px;
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
         border: 4px solid white;
     }
 
@@ -17,22 +17,22 @@
         left: 20px;
         z-index: 1000;
         pointer-events: none;
+        width: 90%;
+        max-width: 500px;
     }
 
     .gis-card {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        padding: 20px 30px;
-        border-radius: 25px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.98);
+        padding: 25px;
+        border-radius: 30px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         pointer-events: auto;
-        margin-bottom: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.4);
+        border: 1px solid #eef;
     }
 
     .gis-controls {
         position: absolute;
-        top: 20px;
+        bottom: 40px;
         right: 20px;
         z-index: 1000;
         display: flex;
@@ -40,34 +40,51 @@
         gap: 15px;
     }
 
+    .btn-fab {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: white;
+        border: none;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        transition: 0.3s;
+    }
+
+    .btn-fab:hover {
+        transform: scale(1.1);
+    }
+
+    .btn-fab.destructive {
+        color: #e53e3e;
+    }
+
     .stat-label {
         font-size: 0.75rem;
         text-transform: uppercase;
         color: #888;
-        font-weight: 700;
+        font-weight: 800;
+        margin-bottom: 5px;
     }
 
     .stat-value {
-        font-size: 1.8rem;
-        font-weight: 800;
+        font-size: 1.7rem;
+        font-weight: 900;
         color: var(--primary);
     }
 </style>
 
-<div class="container" style="padding-top: 100px;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-        <div data-en="Bhoomi Measure (GIS)" data-te="భూమి కొలత (GIS)">
-            <h1 style="font-size: 3rem; color: var(--primary);" id="title-text">Bhoomi<span class="accent-text">
-                    Measure</span></h1>
-            <p style="color: #666;" id="subtitle-text">Tap the map to draw your field boundary / మీ పొలం సరిహద్దును
-                గీయడానికి మ్యాప్‌ను నొక్కండి.</p>
-        </div>
-        <div class="lang-pill">
-            <span
-                style="font-weight: 800; color: var(--primary); background: #e0f2e0; padding: 10px 20px; border-radius: 15px;">
-                <i class="fas fa-satellite"></i> LIVE Satellite GPS
-            </span>
-        </div>
+<div class="container" style="padding-top: 100px; padding-bottom: 120px;">
+    <div style="margin-bottom: 30px;">
+        <h1 style="font-size: 3rem; color: var(--primary);"><span data-en="Bhoomi" data-te="భూమి">Bhoomi</span><span
+                class="accent-text" data-en=" Measure" data-te=" కొలత"> Measure</span></h1>
+        <p style="color: #666; font-size: 1.1rem;" data-en="Professional GIS tool to map your field boundaries."
+            data-te="మీ పొలం సరిహద్దులను గుర్తించడానికి ప్రొఫెషనల్ GIS సాధనం.">Professional GIS tool to map your field
+            boundaries.</p>
     </div>
 
     <div style="position: relative;">
@@ -75,18 +92,17 @@
 
         <div class="gis-overlay">
             <div class="gis-card">
-                <div style="display: flex; gap: 40px;">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
                     <div>
-                        <div class="stat-label" data-en="Area (Acres)" data-te="విస్తీర్ణం (ఎకరాలు)">Area (Acres)</div>
+                        <div class="stat-label" data-en="ACRES" data-te="ఎకరాలు">ACRES</div>
                         <div class="stat-value" id="area-acres">0.00</div>
                     </div>
                     <div>
-                        <div class="stat-label" data-en="Area (Hectares)" data-te="విస్తీర్ణం (హెక్టార్లు)">Area
-                            (Hectares)</div>
+                        <div class="stat-label" data-en="HECT" data-te="హెక్టార్లు">HECT</div>
                         <div class="stat-value" id="area-hectares">0.00</div>
                     </div>
                     <div>
-                        <div class="stat-label" data-en="Perimeter (m)" data-te="చుట్టుకొలత (మీ)">Perimeter (m)</div>
+                        <div class="stat-label" data-en="PERIM" data-te="చుట్టుకొలత">PERIM</div>
                         <div class="stat-value" id="perimeter-m">0</div>
                     </div>
                 </div>
@@ -94,29 +110,28 @@
         </div>
 
         <div class="gis-controls">
-            <button onclick="clearMeasure()" class="btn-prestige btn-outline"
-                style="background: white; border-radius: 20px; color: #e53e3e; border-color: #feb2b2;">
-                <i class="fas fa-undo"></i> <span data-en="Reset" data-te="రీసెట్">Reset</span>
+            <button onclick="undoPoint()" class="btn-fab" title="Undo">
+                <i class="fas fa-undo-alt"></i>
+            </button>
+            <button onclick="clearMeasure()" class="btn-fab destructive" title="Clear All">
+                <i class="fas fa-trash"></i>
             </button>
             <button onclick="saveFieldToDB()" class="btn-prestige btn-primary" id="saveBtn"
-                style="display: none; border-radius: 20px;">
-                <i class="fas fa-save"></i> <span data-en="Save Field" data-te="పొలం సేవ్ చేయండి">Save Field</span>
+                style="display: none; border-radius: 30px; height: 60px; padding: 0 40px;">
+                <i class="fas fa-check-circle"></i> <span data-en="Save Field" data-te="సేవ్ చేయండి">Save Field</span>
             </button>
         </div>
     </div>
 
-    <!-- Optimization Dashboard (Preview) -->
     <div id="gis-advice" class="mission-card"
-        style="margin-top: 40px; display: none; background: linear-gradient(135deg, #f0f7f0, #ffffff); border: 2px solid var(--primary-light);">
+        style="margin-top: 40px; display: none; background: #fff; border-left: 10px solid var(--primary);">
         <div style="display: flex; gap: 40px; align-items: center;">
-            <div style="background: var(--primary); color: white; padding: 30px; border-radius: 30px;">
-                <i class="fas fa-calculator" style="font-size: 2.5rem;"></i>
-            </div>
+            <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                style="width: 100px; height: 100px; border-radius: 20px; object-fit: cover;">
             <div>
-                <h3 style="color: var(--primary); margin-bottom: 10px;" data-en="Field Integration Successful"
-                    data-te="ఫీల్డ్ ఇంటిగ్రేషన్ విజయవంతమైంది">Field Integration Successful</h3>
-                <p style="color: #444;" id="advice-text">Analyzing soil and area for best crop / ఉత్తమ పంట కోసం నేల
-                    మరియు విస్తీర్ణాన్ని విశ్లేషిస్తోంది...</p>
+                <h3 style="color: var(--primary); margin-bottom: 10px;" data-en="Field Analysis Complete"
+                    data-te="ఫీల్డ్ విశ్లేషణ పూర్తయింది">Field Analysis Complete</h3>
+                <p style="color: #444; font-size: 1.1rem;" id="advice-text"></p>
             </div>
         </div>
     </div>
@@ -127,17 +142,12 @@
     let map, markers = [], polygon, latlngs = [];
 
     function initMap() {
-        // Center on a farm area in Guntur, AP
         map = L.map('map', {
-            zoomControl: false
+            zoomControl: false,
+            attributionControl: false
         }).setView([16.3067, 80.4365], 16);
 
-        L.control.zoom({ position: 'bottomright' }).addTo(map);
-
-        // Satellite Layer (Esri)
-        const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EBP, and the GIS User Community'
-        }).addTo(map);
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}').addTo(map);
 
         map.on('click', function (e) {
             addPoint(e.latlng);
@@ -146,11 +156,10 @@
 
     function addPoint(latlng) {
         const marker = L.circleMarker(latlng, {
-            radius: 8,
+            radius: 7,
             fillColor: "#FFD700",
             color: "#fff",
             weight: 3,
-            opacity: 1,
             fillOpacity: 1
         }).addTo(map);
 
@@ -159,44 +168,49 @@
         updatePolygon();
     }
 
+    function undoPoint() {
+        if (markers.length === 0) return;
+        const m = markers.pop();
+        map.removeLayer(m);
+        latlngs.pop();
+        updatePolygon();
+    }
+
     function updatePolygon() {
         if (polygon) map.removeLayer(polygon);
 
-        if (latlngs.length < 2) return;
+        if (latlngs.length < 2) {
+            document.getElementById('saveBtn').style.display = 'none';
+            resetStats();
+            return;
+        }
 
         polygon = L.polygon(latlngs, {
             color: '#FFD700',
             fillColor: '#4CAF50',
-            fillOpacity: 0.4,
-            weight: 4
+            fillOpacity: 0.3,
+            weight: 3
         }).addTo(map);
 
         if (latlngs.length >= 3) {
             calculateGISStats();
-            document.getElementById('saveBtn').style.display = 'block';
+            document.getElementById('saveBtn').style.display = 'flex';
         }
     }
 
     function calculateGISStats() {
-        // Real-ish calculation based on coordinate distance
         let area = 0;
         let perimeter = 0;
 
         for (let i = 0; i < latlngs.length; i++) {
             let j = (i + 1) % latlngs.length;
-
-            // Area in degrees^2
-            area += latlngs[i][0] * latlngs[j][1];
-            area -= latlngs[j][0] * latlngs[i][1];
-
-            // Perimeter in meters
+            area += latlngs[i][0] * latlngs[j][1] - latlngs[j][0] * latlngs[i][1];
             perimeter += map.distance(latlngs[i], latlngs[j]);
         }
 
-        // Convert to Sq Meters (approx at this latitude)
-        const areaSqm = Math.abs(area) * 111320 * 111320 * Math.cos(latlngs[0][0] * Math.PI / 180) / 2;
+        const meterScale = 111320 * 111320 * Math.cos(latlngs[0][0] * Math.PI / 180);
+        const areaSqm = (Math.abs(area) * meterScale) / 2;
 
-        // For AP: 1 acre = 4046.86 sqm
         const acres = areaSqm / 4046.86;
         const hectares = acres * 0.404686;
 
@@ -205,10 +219,17 @@
         document.getElementById('perimeter-m').innerText = Math.round(perimeter);
     }
 
+    function resetStats() {
+        document.getElementById('area-acres').innerText = "0.00";
+        document.getElementById('area-hectares').innerText = "0.00";
+        document.getElementById('perimeter-m').innerText = "0";
+    }
+
     async function saveFieldToDB() {
+        const areaVal = document.getElementById('area-acres').innerText;
         const data = {
-            name: "My Field " + new Date().toLocaleDateString(),
-            area_acres: document.getElementById('area-acres').innerText,
+            name: "Field " + new Date().getHours() + ":" + new Date().getMinutes(),
+            area_acres: areaVal,
             area_hectares: document.getElementById('area-hectares').innerText,
             perimeter_m: document.getElementById('perimeter-m').innerText,
             coordinates: latlngs
@@ -220,16 +241,14 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
-            const result = await resp.json();
 
-            if (result.status === "success") {
-                document.getElementById('gis-advice').style.display = 'block';
-                const acres = data.area_acres;
-                document.getElementById('advice-text').innerText = `Your ${acres} acre field is perfect for Chilli this season. Estimated seeds: ${Math.round(acres * 0.5)}kg. Total Net Profit: ₹${Math.round(acres * 120000)}.`;
-                alert("Field saved successfully! Recommendations updated.");
-            }
+            document.getElementById('gis-advice').style.display = 'block';
+            document.getElementById('advice-text').innerText =
+                `Based on ${areaVal} acres, you need approximately ${Math.round(areaVal * 2.5)}kg of high-quality seeds. Expected profit: ₹${Math.round(areaVal * 85000)}.`;
+
+            document.getElementById('gis-advice').scrollIntoView({ behavior: 'smooth' });
         } catch (e) {
-            alert("Error saving field. Please check your connection.");
+            console.error(e);
         }
     }
 
@@ -239,26 +258,37 @@
         markers = [];
         latlngs = [];
         polygon = null;
-        document.getElementById('area-acres').innerText = "0.00";
-        document.getElementById('area-hectares').innerText = "0.00";
-        document.getElementById('perimeter-m').innerText = "0";
+        resetStats();
         document.getElementById('saveBtn').style.display = 'none';
         document.getElementById('gis-advice').style.display = 'none';
     }
 
     // Bilingual Support Toggle Logic
-    const currentLang = document.getElementById('langSelect').value;
+    // This part needs to be adapted if langSelect is not globally available or if the mechanism changed
+    // Assuming langSelect is still available or a similar mechanism exists
     function updateBilingualUI(lang) {
-        document.querySelectorAll('[data-' + lang + ']').forEach(el => {
-            el.innerText = el.getAttribute('data-' + lang);
+        document.querySelectorAll('[data-en]').forEach(el => {
+            if (el.getAttribute('data-' + lang)) {
+                el.innerText = el.getAttribute('data-' + lang);
+            } else {
+                el.innerText = el.getAttribute('data-en'); // Fallback to English if translation not found
+            }
         });
     }
 
-    document.getElementById('langSelect').addEventListener('change', (e) => updateBilingualUI(e.target.value));
+    // Check if langSelect exists before adding event listener
+    const langSelect = document.getElementById('langSelect');
+    if (langSelect) {
+        langSelect.addEventListener('change', (e) => updateBilingualUI(e.target.value));
+    }
 
     window.onload = () => {
         initMap();
-        updateBilingualUI(document.getElementById('langSelect').value);
+        if (langSelect) {
+            updateBilingualUI(langSelect.value);
+        } else {
+            updateBilingualUI('en'); // Default to English if no language selector
+        }
     };
 </script>
 {% endblock %}

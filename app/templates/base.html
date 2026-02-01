@@ -18,24 +18,31 @@
 <body>
     <header class="mission-header">
         <div class="header-container">
-            <div class="logo-area">
-                <span class="logo-text">Bhoomi<span class="accent-text">AI</span> </span>
-                <span id="liveWeatherPill"
-                    style="font-size: 0.9rem; background: var(--primary-light); color: white; padding: 5px 15px; border-radius: 20px; margin-left: 20px; font-weight: 700;">
+            <div class="logo-area" style="display: flex; align-items: center; gap: 15px;">
+                <img src="/static/img/logo.jpg" alt="BhoomiAI Logo"
+                    style="height: 60px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                <div style="display: flex; flex-direction: column;">
+                    <span class="logo-text">Bhoomi<span class="accent-text">AI</span></span>
+                    <span class="mission-tag" data-en="Raithu Mithraa - AP Mission"
+                        data-te="రైతు మిత్ర - AP మిషన్">Raithu Mithraa - AP Mission</span>
+                </div>
+                <span id="liveWeatherPill" class="weather-pill-premium">
                     <i class="fas fa-sun"></i> 32°C - Clear
                 </span>
-                <span class="mission-tag">National Digital Farming Mission</span>
             </div>
             <nav class="prestige-nav">
-                <a href="/" class="nav-link active">Home</a>
-                <a href="/advisor" class="nav-link">Advisor</a>
-                <a href="/mandi" class="nav-link">Mandi</a>
-                <a href="/doctor" class="nav-link">Doctor</a>
+                <a href="/" class="nav-link {% if request.url.path == '/' %}active{% endif %}" data-en="Home"
+                    data-te="హోమ్">Home</a>
+                <a href="/advisor" class="nav-link {% if request.url.path == '/advisor' %}active{% endif %}"
+                    data-en="Advisor" data-te="సలహాదారు">Advisor</a>
+                <a href="/mandi" class="nav-link {% if request.url.path == '/mandi' %}active{% endif %}" data-en="Mandi"
+                    data-te="మార్కెట్">Mandi</a>
+                <a href="/doctor" class="nav-link {% if request.url.path == '/doctor' %}active{% endif %}"
+                    data-en="Doctor" data-te="వైద్యుడు">Doctor</a>
                 <div class="lang-pill">
                     <select id="langSelect">
                         <option value="en">English</option>
-                        <option value="hi">Hindi</option>
-                        <option value="te">Telugu</option>
+                        <option value="te">తెలుగు (Telugu)</option>
                     </select>
                 </div>
             </nav>

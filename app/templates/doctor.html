@@ -3,26 +3,33 @@
 {% block content %}
 <div class="container" style="padding: 100px 0;">
     <div style="text-align: center; margin-bottom: 60px;">
-        <h2 style="font-size: 3.5rem; color: var(--primary);">Crop Doctor AI</h2>
-        <p style="font-size: 1.2rem; color: #666;">National Computer Vision Engine for Instant Disease Diagnosis</p>
+        <h2 style="font-size: 3.5rem; color: var(--primary);" data-en="Crop Doctor AI" data-te="పంట డాక్టర్ AI">Crop
+            Doctor AI</h2>
+        <p style="font-size: 1.2rem; color: #666;" data-en="Instant Disease Diagnosis for Farmers"
+            data-te="రైతుల కోసం తక్షణ వ్యాధి నిర్ధారణ">Instant Disease Diagnosis for Farmers</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px;" class="flex-column-mobile">
         <div id="doctor-upload">
             <div class="mission-card"
-                style="padding: 60px; text-align: center; border: 3px dashed var(--primary-light); background: #f9fbf9;">
-                <i class="fas fa-camera-retro" style="font-size: 5rem; color: var(--primary); margin-bottom: 30px;"></i>
-                <h3 style="margin-bottom: 20px;">Upload Infected Leaf</h3>
-                <p style="color: #666; margin-bottom: 40px;">Our AI scanner detects 500+ botanical diseases with 98%
-                    accuracy.</p>
+                style="padding: 50px; text-align: center; border: 3px dashed var(--primary-light); background: #f9fbf9;">
+                <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                    style="width: 150px; border-radius: 50%; margin-bottom: 30px; border: 5px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                <h3 style="margin-bottom: 20px;" data-en="Upload Infected Leaf"
+                    data-te="వ్యాధి సోకిన ఆకును అప్‌లోడ్ చేయండి">Upload Infected Leaf</h3>
+                <p style="color: #666; margin-bottom: 40px;"
+                    data-en="Our AI detects 500+ botanical diseases with 98% accuracy."
+                    data-te="మా AI 98% ఖచ్చితత్వంతో 500+ వృక్ష వ్యాధులను గుర్తిస్తుంది.">Our AI detects 500+ botanical
+                    diseases with 98% accuracy.</p>
 
                 <div id="scanner-line"
                     style="display: none; height: 5px; background: var(--primary-light); width: 100%; position: relative; top: 0; box-shadow: 0 0 20px var(--primary-light); animation: scan 2s linear infinite;">
                 </div>
 
                 <input type="file" id="doctorFileInput" style="display:none;" onchange="startMissionScan()">
-                <button class="btn-prestige btn-primary"
-                    onclick="document.getElementById('doctorFileInput').click()">Choose Image & Scan</button>
+                <button class="btn-prestige btn-primary" onclick="document.getElementById('doctorFileInput').click()"
+                    data-en="Choose Image & Scan" data-te="చిత్రాన్ని ఎంచుకోండి & స్కాన్ చేయండి">Choose Image &
+                    Scan</button>
             </div>
         </div>
 
@@ -37,56 +44,34 @@
                         style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px;">
                         <div>
                             <span
-                                style="background: #fed7d7; color: #c53030; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 800;">CRITICAL
-                                ALERT</span>
-                            <h3 style="font-size: 2.5rem; color: #c53030; margin-top: 10px;">Powdery Mildew</h3>
+                                style="background: #fed7d7; color: #c53030; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 800;"
+                                data-en="CRITICAL ALERT" data-te="క్లిష్టమైన హెచ్చరిక">CRITICAL ALERT</span>
+                            <h3 style="font-size: 2.5rem; color: #c53030; margin-top: 10px;" data-en="Powdery Mildew"
+                                data-te="బూజు తెగులు">Powdery Mildew</h3>
                         </div>
                         <div style="text-align: right;">
                             <div style="font-size: 1.5rem; font-weight: 800; color: #2D5A27;">98.4%</div>
-                            <div style="color: #888;">AI Confidence</div>
+                            <div style="color: #888;" data-en="AI Confidence" data-te="AI విశ్వాసం">AI Confidence</div>
                         </div>
                     </div>
 
                     <div
                         style="padding: 25px; background: #fff5f5; border-radius: 25px; border: 1px solid #feb2b2; margin-bottom: 30px;">
-                        <h4 style="color: #c53030; margin-bottom: 15px;"><i class="fas fa-flask"></i> Prescribed
-                            Treatment</h4>
-                        <ul style="margin-left: 20px; color: #742a2a; line-height: 1.8;">
-                            <li>Apply <strong>Wettable Sulfur</strong> (2g per liter of water).</li>
-                            <li>Prune overlapping leaves to improve air circulation.</li>
-                            <li>Avoid irrigation during high humidity hours (6 PM - 10 PM).</li>
+                        <h4 style="color: #c53030; margin-bottom: 15px;" data-en="Treatment Plan"
+                            data-te="చికిత్స ప్రణాళిక">Treatment Plan</h4>
+                        <ul style="margin-left: 20px; color: #742a2a; line-height: 1.8;" id="treatment-list">
+                            <li data-en="Apply Wettable Sulfur (2g per liter)."
+                                data-te="వెట్టబుల్ సల్ఫర్ (లీటరుకు 2 గ్రా) వాడండి.">Apply Wettable Sulfur (2g per
+                                liter).</li>
+                            <li data-en="Improve air circulation." data-te="గాలి ప్రసరణను మెరుగుపరచండి.">Improve air
+                                circulation.</li>
                         </ul>
                     </div>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div
-                            style="padding: 20px; background: #e6fffa; border-radius: 20px; border: 1px solid #b2f5ea;">
-                            <h5 style="color: #234e52; margin-bottom: 5px;">Natural Cure</h5>
-                            <p style="font-size: 0.85rem; color: #234e52;">Spray 1:9 milk-water solution every 10 days.
-                            </p>
-                        </div>
-                        <div
-                            style="padding: 20px; background: #ebf8ff; border-radius: 20px; border: 1px solid #bee3f8;">
-                            <h5 style="color: #2b6cb0; margin-bottom: 5px;">Market Impact</h5>
-                            <p style="font-size: 0.85rem; color: #2b6cb0;">If untreated, yield could drop by 35% in 14
-                                days.</p>
-                        </div>
-                    </div>
-
-                    <button class="btn-prestige btn-outline"
-                        style="width:100%; margin-top: 30px; color: var(--primary); border-color: var(--primary);"
-                        onclick="location.reload()">Scan Another Sample</button>
+                    <button class="btn-prestige btn-outline" style="width:100%; border-color: var(--primary);"
+                        onclick="location.reload()" data-en="Scan New Leaf" data-te="కొత్త ఆకును స్కాన్ చేయండి">Scan New
+                        Leaf</button>
                 </div>
-            </div>
-        </div>
-
-        <div class="mission-card"
-            style="background: #eef7ee; display: flex; align-items: center; gap: 30px; height: fit-content; padding: 40px;">
-            <i class="fas fa-info-circle" style="font-size: 3rem; color: var(--primary);"></i>
-            <div style="text-align: left;">
-                <h4 style="color: var(--primary); margin-bottom: 10px;">Photography Best Practices</h4>
-                <p style="font-size: 0.95rem; color: #444;">For mission-tier accuracy, ensure clear sunlight, hold the
-                    leaf flat on your palm, and avoid shadows.</p>
             </div>
         </div>
     </div>

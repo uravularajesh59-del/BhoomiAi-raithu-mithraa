@@ -33,14 +33,85 @@ h3,
 
 /* --- Navigation --- */
 .mission-header {
-    background: var(--glass-dark);
-    backdrop-filter: blur(20px);
+    background: rgba(10, 31, 10, 0.95);
+    backdrop-filter: blur(25px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
     padding: 15px 5%;
     color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.3s ease;
+}
+
+.logo-area:hover {
+    transform: scale(1.02);
+}
+
+.logo-text {
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    text-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+    background: linear-gradient(to right, #fff, #a5d6a7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.accent-text {
+    color: var(--accent);
+    -webkit-text-fill-color: var(--accent);
+}
+
+.prestige-nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    padding: 10px 24px;
+    border-radius: 50px;
+    transition: all 0.2s ease-out;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    min-width: 110px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: white;
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-color: white;
+    font-weight: 800;
 }
 
 .header-container {
@@ -52,53 +123,34 @@ h3,
 }
 
 .logo-text {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 800;
-    letter-spacing: -1px;
+    letter-spacing: -1.5px;
 }
 
-.accent-text {
-    color: var(--accent);
-}
-
-.mission-tag {
-    display: block;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    opacity: 0.7;
-    margin-top: -5px;
-}
-
-.prestige-nav {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-.nav-link {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: 0.3s;
-    position: relative;
-}
-
-.nav-link.active,
-.nav-link:hover {
+.weather-pill-premium {
+    font-size: 0.85rem;
+    background: var(--primary-light);
     color: white;
+    padding: 8px 18px;
+    border-radius: 25px;
+    margin-left: 20px;
+    font-weight: 800;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
 }
 
-.nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 20px;
-    height: 3px;
-    background: var(--accent);
-    border-radius: 2px;
+@media (max-width: 992px) {
+    .prestige-nav {
+        display: none;
+    }
+
+    .weather-pill-premium {
+        display: none;
+    }
 }
 
 .lang-pill select {
@@ -109,12 +161,14 @@ h3,
     font-weight: 700;
     color: var(--primary);
     cursor: pointer;
+    font-size: 0.85rem;
 }
 
 /* --- Hero Section --- */
 .prestige-hero {
     height: 80vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+    /* background: handled by slider */
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -296,14 +350,25 @@ h3,
 
 @media (max-width: 768px) {
     .floating-bottom-nav {
-        width: 90%;
-        gap: 20px;
-        padding: 10px 20px;
-        bottom: 20px;
+        width: 95%;
+        gap: 10px;
+        padding: 10px;
+        bottom: 15px;
+    }
+
+    .mission-card {
+        padding: 25px !important;
+    }
+
+    .flex-column-mobile {
+        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 30px !important;
     }
 
     .hero-content h1 {
-        font-size: 3rem;
+        font-size: 2.8rem;
     }
 
     .grid-mission {

@@ -2,6 +2,27 @@
 
 {% block content %}
 <section class="prestige-hero">
+    <div class="hero-slider">
+        <div class="slide-track">
+            <!-- Duplicated images for infinite scroll effect -->
+            <div class="slide"
+                style="background-image: url('https://images.unsplash.com/photo-1627920769843-2415d86230f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+            </div>
+            <div class="slide"
+                style="background-image: url('https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+            </div>
+            <div class="slide"
+                style="background-image: url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+            </div>
+            <div class="slide"
+                style="background-image: url('https://images.unsplash.com/photo-1627920769843-2415d86230f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+            </div>
+            <div class="slide"
+                style="background-image: url('https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+            </div>
+        </div>
+    </div>
+    <div class="hero-overlay"></div>
     <div class="hero-content">
         <h1>Bhoomi<span class="accent-text">AI</span></h1>
         <p class="hero-subtitle">The National Core for Intelligent Agriculture. Empowering 140 Million Farmers with
@@ -13,51 +34,111 @@
     </div>
 </section>
 
+<style>
+    /* Slider Styles */
+    .prestige-hero {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+    }
+
+    .slide-track {
+        display: flex;
+        width: calc(100% * 3);
+        /* Adjust based on image count */
+        height: 100%;
+        animation: scroll 60s linear infinite;
+    }
+
+    .slide {
+        width: 100vw;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        flex-shrink: 0;
+    }
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+        z-index: -1;
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-200vw);
+        }
+
+        /* Adjust based on track length */
+    }
+</style>
+
 <div class="container">
     <div class="grid-mission">
-        <div class="mission-card">
-            <i class="fas fa-microchip"></i>
-            <h3>AI advisor</h3>
-            <p>Algorithm-driven crop selection based on soil health, local weather patterns, and market predictive
-                analysis.</p>
+        <div class="mission-card" style="padding-top: 0; overflow: hidden;">
+            <img src="https://images.unsplash.com/photo-1592911346536-f3659223126e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                style="width: 100%; height: 200px; object-fit: cover; margin-bottom: 25px; border-radius: 0 0 30px 30px;">
+            <h3 data-en="AI advisor" data-te="AI సలహాదారు">AI advisor</h3>
+            <p data-en="Algorithm-driven crop selection based on soil health, local weather patterns, and market predictive analysis."
+                data-te="మట్టి ఆరోగ్యం, స్థానిక వాతావరణం మరియు మార్కెట్ విశ్లేషణ ఆధారంగా పంట ఎంపిక.">Algorithm-driven
+                crop selection based on soil health, local weather patterns, and market predictive analysis.</p>
         </div>
-        <div class="mission-card">
-            <i class="fas fa-chart-line"></i>
-            <h3>Live Mandi</h3>
-            <p>Direct integration with Agmarknet and eNAM for real-time price discovery and profit optimization.</p>
+        <div class="mission-card" style="padding-top: 0; overflow: hidden;">
+            <img src="https://images.unsplash.com/photo-1590682680695-43b964a3ae17?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                style="width: 100%; height: 200px; object-fit: cover; margin-bottom: 25px; border-radius: 0 0 30px 30px;">
+            <h3 data-en="Live Mandi" data-te="లైవ్ మార్కెట్">Live Mandi</h3>
+            <p data-en="Direct integration with Agmarknet and eNAM for real-time price discovery and profit optimization."
+                data-te="నిజ-సమయ ధరల గుర్తింపు మరియు లాభాల ఆప్టిమైజేషన్ కోసం మార్కెట్‌లతో ప్రత్యక్ష అనుసంధానం.">Direct
+                integration with Agmarknet and eNAM for real-time price discovery and profit optimization.</p>
         </div>
-        <div class="mission-card">
-            <i class="fas fa-shield-virus"></i>
-            <h3>Crop Doctor</h3>
-            <p>Advanced computer vision engine to detect diseases and provide surgical treatment protocols.</p>
+        <div class="mission-card" style="padding-top: 0; overflow: hidden;">
+            <img src="https://plus.unsplash.com/premium_photo-1661919253724-6f01da08fa17?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                style="width: 100%; height: 200px; object-fit: cover; margin-bottom: 25px; border-radius: 0 0 30px 30px;">
+            <h3 data-en="Crop Doctor" data-te="పంట డాక్టర్">Crop Doctor</h3>
+            <p data-en="Advanced computer vision engine to detect diseases and provide surgical treatment protocols."
+                data-te="వ్యాధులను గుర్తించడానికి మరియు చికిత్స ప్రోటోకాల్‌లను అందించడానికి అధునాతన కంప్యూటర్ విజన్ ఇంజన్.">
+                Advanced computer vision engine to detect diseases and provide surgical treatment protocols.</p>
         </div>
     </div>
 
-    <section
-        style="margin-top: 100px; padding: 60px; background: white; border-radius: 50px; display: flex; align-items: center; gap: 60px; box-shadow: var(--shadow);">
+    <section class="mission-impact-section">
         <div style="flex: 1;">
-            <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                style="width: 100%; border-radius: 30px; box-shadow: 20px 20px 0 var(--primary-light);">
+            <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                style="width: 100%; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.2);">
         </div>
         <div style="flex: 1.2;">
-            <h2 style="font-size: 3rem; color: var(--primary); margin-bottom: 30px;">National Support Infrastructure
-            </h2>
-            <p style="font-size: 1.2rem; line-height: 1.8; color: #444; margin-bottom: 30px;">
-                BhoomiAI isn't just an app; it's a digital backbone. Built to work offline, with voice support in native
-                dialects, ensuring no farmer is left behind in the digital revolution.
+            <h2 style="font-size: 3rem; color: var(--primary); margin-bottom: 30px;" data-en="Empowering Farmers in AP"
+                data-te="AP రైతులకు సాధికారత">Empowering Farmers in AP</h2>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: #444; margin-bottom: 30px;"
+                data-en="BhoomiAI isn't just an app; it's a digital backbone. Built to work offline with language support, ensuring no farmer is left behind."
+                data-te="భూమిAI అనేది కేవలం ఒక యాప్ మాత్రమే కాదు; ఇది డిజిటల్ వెన్నెముక. ఏ రైతు వెనుకబడి పోకుండా ఉండేలా భాషా మద్దతుతో రూపొందించబడింది.">
+                BhoomiAI isn't just an app; it's a digital backbone. Built to work offline with language support,
+                ensuring no farmer is left behind.
             </p>
-            <div style="display: flex; gap: 30px;">
+            <div style="display: flex; gap: 40px;">
                 <div style="text-align: center;">
                     <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary);">28°C</div>
-                    <div style="color: #888;">Live Field Temp</div>
+                    <div style="color: #888;" data-en="Field Temp" data-te="పొలం ఉష్ణోగ్రత">Field Temp</div>
                 </div>
                 <div style="text-align: center;">
-                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary);">12.5k</div>
-                    <div style="color: #888;">Active Mandis</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary);">98%</div>
-                    <div style="color: #888;">AI Accuracy</div>
+                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary);">2M+</div>
+                    <div style="color: #888;" data-en="Farmers Joined" data-te="చేరిన రైతులు">Farmers Joined</div>
                 </div>
             </div>
         </div>
