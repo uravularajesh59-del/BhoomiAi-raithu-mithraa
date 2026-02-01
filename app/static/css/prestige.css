@@ -80,7 +80,8 @@ h3,
 
 .prestige-nav {
     display: flex;
-    gap: 15px;
+    gap: 30px;
+    /* Increased Equal Gap */
     align-items: center;
 }
 
@@ -88,7 +89,10 @@ h3,
     text-decoration: none;
     color: white;
     font-weight: 700;
-    padding: 10px 24px;
+    padding: 10px 0;
+    /* Removing side padding for fixed width distribution */
+    width: 120px;
+    /* Fixed width means equal size */
     border-radius: 50px;
     transition: all 0.2s ease-out;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -97,7 +101,6 @@ h3,
     text-transform: uppercase;
     font-size: 0.75rem;
     letter-spacing: 1.5px;
-    min-width: 110px;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -167,7 +170,7 @@ h3,
 /* --- Hero Section --- */
 .prestige-hero {
     height: 80vh;
-    /* background: handled by slider */
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1627920769843-2415d86230f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
     position: relative;
     display: flex;
     flex-direction: column;
