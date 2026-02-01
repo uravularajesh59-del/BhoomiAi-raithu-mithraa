@@ -19,9 +19,11 @@
     <header class="mission-header">
         <div class="header-container">
             <div class="logo-area">
-                <span class="logo-text">Bhoomi<span class="accent-text">AI</span> <span
-                        style="font-size: 1.2rem; background: var(--accent); color: var(--primary); padding: 2px 10px; border-radius: 10px; margin-left: 10px;">AP
-                        Edition</span></span>
+                <span class="logo-text">Bhoomi<span class="accent-text">AI</span> </span>
+                <span id="liveWeatherPill"
+                    style="font-size: 0.9rem; background: var(--primary-light); color: white; padding: 5px 15px; border-radius: 20px; margin-left: 20px; font-weight: 700;">
+                    <i class="fas fa-sun"></i> 32°C - Clear
+                </span>
                 <span class="mission-tag">National Digital Farming Mission</span>
             </div>
             <nav class="prestige-nav">
@@ -44,11 +46,28 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="mission-footer">
-        <div class="container">
-            <p>&copy; 2026 BhoomiAI National Mission. All Rights Reserved.</p>
-        </div>
-    </footer>
+    <div class="floating-bottom-nav">
+        <a href="/" class="bottom-nav-item {% if request.url.path == '/' %}active{% endif %}">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="/advisor" class="bottom-nav-item {% if request.url.path == '/advisor' %}active{% endif %}">
+            <i class="fas fa-seedling"></i>
+            <span>Advisor</span>
+        </a>
+        <a href="/mandi" class="bottom-nav-item {% if request.url.path == '/mandi' %}active{% endif %}">
+            <i class="fas fa-chart-bar"></i>
+            <span>Mandi</span>
+        </a>
+        <a href="/doctor" class="bottom-nav-item {% if request.url.path == '/doctor' %}active{% endif %}">
+            <i class="fas fa-user-md"></i>
+            <span>Doctor</span>
+        </a>
+        <a href="/measure" class="bottom-nav-item {% if request.url.path == '/measure' %}active{% endif %}">
+            <i class="fas fa-ruler-combined"></i>
+            <span>Measure</span>
+        </a>
+    </div>
 
     <script src="/static/js/mission.js"></script>
 </body>

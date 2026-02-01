@@ -19,8 +19,25 @@ class MandiPrice(Base):
     price_date = Column(String(50))
     created_at = Column(DateTime, default=datetime.utcnow)
 
+class Field(Base):
+    __tablename__ = 'fields'
+    id = Column(Integer, primary_key=True)
+    field_name = Column(String(100))
+    area_acres = Column(Float)
+    area_hectares = Column(Float)
+    perimeter_m = Column(Float)
+    coordinates = Column(String)  # Stored as JSON string
+    created_at = Column(DateTime, default=datetime.utcnow)
+
 # Database Setup
-engine = create_engine('sqlite:///app/data/bhoomiai_ap.db')
+import os
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///app/data/bhoomiai_ap.db")
+
+# If using PostgreSQL, we might need to handle the 'postgres://' vs 'postgresql://' prefix issue with Heroku/Render
+if SQLALCHEMY_DATABASE_URL.startswith("postgres://"):
+    SQLALCHEMY_DATABASE_URL = SQLALCHEMY_DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 def init_db():

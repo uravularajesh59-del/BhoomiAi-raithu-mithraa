@@ -5,9 +5,11 @@ from datetime import datetime
 
 class APMandiScraper:
     def __init__(self):
+        # Specific Agmarknet URL for Andhra Pradesh Market Wise Today Report
         self.base_url = "https://agmarknet.gov.in/SearchReports/SearchReport.aspx?Report_Name=MarketWise&State=1&District=0&Market=0&Commodity=0&Today=1"
         self.headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
         }
 
     def scrape_today(self):
