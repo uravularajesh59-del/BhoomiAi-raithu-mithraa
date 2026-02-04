@@ -70,6 +70,7 @@ h3,
     text-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
     background: linear-gradient(to right, #fff, #a5d6a7);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -80,8 +81,8 @@ h3,
 
 .prestige-nav {
     display: flex;
-    gap: 30px;
-    /* Increased Equal Gap */
+    gap: 15px;
+    /* Reduced gap to fit more items */
     align-items: center;
 }
 
@@ -91,8 +92,8 @@ h3,
     font-weight: 700;
     padding: 10px 0;
     /* Removing side padding for fixed width distribution */
-    width: 120px;
-    /* Fixed width means equal size */
+    width: 100px;
+    /* Compact width */
     border-radius: 50px;
     transition: all 0.2s ease-out;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -159,7 +160,7 @@ h3,
 .lang-pill select {
     background: var(--accent);
     border: none;
-    padding: 8px 15px;
+    padding: 6px 12px;
     border-radius: 30px;
     font-weight: 700;
     color: var(--primary);
@@ -354,9 +355,28 @@ h3,
 @media (max-width: 768px) {
     .floating-bottom-nav {
         width: 95%;
-        gap: 10px;
-        padding: 10px;
+        gap: 5px;
+        /* Tighter gap for mobile */
+        padding: 10px 15px;
         bottom: 15px;
+        justify-content: space-between;
+        /* Distribute items evenly */
+    }
+
+    .bottom-nav-item span {
+        font-size: 0.65rem;
+        /* Smaller font on mobile */
+        letter-spacing: 0;
+    }
+
+    .bottom-nav-item i {
+        font-size: 1.2rem;
+    }
+
+    .measure-controls {
+        bottom: 150px !important;
+        /* Lift controls above nav */
+        right: 15px !important;
     }
 
     .mission-card {

@@ -138,9 +138,30 @@ async function refreshMandi() {
     }
 }
 
+const CROP_TRANSLATIONS = {
+    'Chilli': 'మిరప',
+    'Chillies': 'మిరప',
+    'Red Chillies (Teja)': 'ఎర్ర మిరప (తేజ)',
+    'Cotton': 'పత్తి',
+    'Bt Cotton': 'Bt పత్తి',
+    'Paddy': 'వరి',
+    'Paddy(Rice)': 'వరి (బియ్యం)',
+    'Rice': 'బియ్యం',
+    'BPT 5204': 'BPT 5204',
+    'Tobacco': 'పొగాకు',
+    'Groundnut': 'వేరుశనగ',
+    'Tomato': 'టమాటో',
+    'Maize': 'మొక్కజొన్న',
+    'Coconut': 'కొబ్బరి',
+    'Bengal Gram': 'శనగలు',
+    'Onion': 'ఉల్లిపాయ',
+    'Red Onion': 'ఎర్ర ఉల్లిపాయ'
+};
+
 function renderMandiTable(data) {
     const tbody = document.getElementById('mandi-table-body');
     tbody.innerHTML = '';
+    const currentLang = localStorage.getItem('bhoomi_lang') || 'en';
 
     if (data.length === 0) {
         tbody.innerHTML = '<tr><td colspan="4" style="padding: 40px; text-align: center; color: #999;">No data found for your search.</td></tr>';
@@ -148,10 +169,21 @@ function renderMandiTable(data) {
     }
 
     data.forEach(p => {
+        let displayName = p.commodity;
+        let displayVariety = p.variety;
+
+        if (currentLang === 'te') {
+            displayName = CROP_TRANSLATIONS[p.commodity] || p.commodity;
+            displayVariety = CROP_TRANSLATIONS[p.variety] || p.variety;
+        }
+
         const row = document.createElement('tr');
         row.style.borderBottom = '1px solid #eee';
         row.innerHTML = `
-            <td style="padding: 25px; font-weight: 800;">${p.commodity}</td>
+            <td style="padding: 25px; font-weight: 800;">
+                ${displayName}
+                <div style="font-size: 0.8rem; color: #888; font-weight: normal;">${displayVariety}</div>
+            </td>
             <td style="padding: 25px; color: #666;">${p.market} (${p.district})</td>
             <td style="padding: 25px; font-weight: 800; color: var(--primary); font-size: 1.3rem;">₹${p.modal_price}/q</td>
             <td style="padding: 25px;">

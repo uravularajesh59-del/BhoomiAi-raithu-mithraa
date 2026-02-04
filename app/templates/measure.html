@@ -109,11 +109,29 @@
             </div>
         </div>
 
-        <div class="gis-controls">
+        <div id="startup-modal"
+            style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 2000; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); border-radius: 40px;">
+            <div style="background: white; padding: 30px; border-radius: 30px; text-align: center; max-width: 80%;">
+                <i class="fas fa-satellite-dish"
+                    style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;"></i>
+                <h3 style="color: var(--primary); margin-bottom: 10px;">Start Measuring</h3>
+                <p style="color: #666; margin-bottom: 25px;">Go to your field and tap points on the map to mark
+                    boundaries.</p>
+                <button onclick="document.getElementById('startup-modal').style.display='none'; locateUser();"
+                    class="btn-prestige btn-primary">
+                    <i class="fas fa-crosshairs"></i> Locate Me
+                </button>
+            </div>
+        </div>
+
+        <div class="gis-controls measure-controls" style="bottom: 120px;">
+            <button onclick="locateUser()" class="btn-fab" title="Locate Me" style="color: var(--primary);">
+                <i class="fas fa-crosshairs"></i>
+            </button>
             <button onclick="undoPoint()" class="btn-fab" title="Undo">
                 <i class="fas fa-undo-alt"></i>
             </button>
-            <button onclick="clearMeasure()" class="btn-fab destructive" title="Clear All">
+            <button onclick="confirmClear()" class="btn-fab destructive" title="Clear All">
                 <i class="fas fa-trash"></i>
             </button>
             <button onclick="saveFieldToDB()" class="btn-prestige btn-primary" id="saveBtn"
@@ -151,6 +169,33 @@
 
         map.on('click', function (e) {
             addPoint(e.latlng);
+        });
+
+        // remove locateUser() from here, moved to modal
+        // locateUser();
+    }
+
+    function confirmClear() {
+        if (confirm("Are you sure you want to clear the current measurement?")) {
+            clearMeasure();
+        }
+    }
+
+    function locateUser() {
+        if (!navigator.geolocation) {
+            alert("Geolocation is not supported by your browser");
+            return;
+        }
+        navigator.geolocation.getCurrentPosition(position => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            map.flyTo([lat, lng], 18, {
+                animate: true,
+                duration: 1.5
+            });
+        }, (error) => {
+            console.log("Locate error:", error);
+            // Silent fail or optional alert: alert("Unable to retrieve your location");
         });
     }
 

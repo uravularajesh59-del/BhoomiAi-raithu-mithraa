@@ -2,26 +2,7 @@
 
 {% block content %}
 <section class="prestige-hero">
-    <div class="hero-slider">
-        <div class="slide-track">
-            <!-- Duplicated images for infinite scroll effect -->
-            <div class="slide"
-                style="background-image: url('https://images.unsplash.com/photo-1627920769843-2415d86230f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
-            </div>
-            <div class="slide"
-                style="background-image: url('https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
-            </div>
-            <div class="slide"
-                style="background-image: url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
-            </div>
-            <div class="slide"
-                style="background-image: url('https://images.unsplash.com/photo-1627920769843-2415d86230f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
-            </div>
-            <div class="slide"
-                style="background-image: url('https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
-            </div>
-        </div>
-    </div>
+    <!-- Static Hero Background is handled in CSS -->
     <div class="hero-overlay"></div>
     <div class="hero-content">
         <h1>Bhoomi<span class="accent-text">AI</span></h1>
@@ -35,35 +16,10 @@
 </section>
 
 <style>
-    /* Slider Styles */
+    /* Slider Styles Removed for Static Background */
     .prestige-hero {
         position: relative;
         overflow: hidden;
-    }
-
-    .hero-slider {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -2;
-    }
-
-    .slide-track {
-        display: flex;
-        width: calc(100% * 3);
-        /* Adjust based on image count */
-        height: 100%;
-        animation: scroll 60s linear infinite;
-    }
-
-    .slide {
-        width: 100vw;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        flex-shrink: 0;
     }
 
     .hero-overlay {
@@ -74,18 +30,6 @@
         height: 100%;
         background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
         z-index: -1;
-    }
-
-    @keyframes scroll {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(-200vw);
-        }
-
-        /* Adjust based on track length */
     }
 </style>
 
