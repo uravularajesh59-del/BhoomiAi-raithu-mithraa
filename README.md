@@ -1,55 +1,65 @@
 # BhoomiAI: Raithu Mithraa (AP Edition) 🌾🚀
 
-BhoomiAI is a premium digital farming platform designed for the farmers of Andhra Pradesh. It leverages AI, GIS, and real-time data to empower the agricultural community.
+![Status](https://img.shields.io/badge/Status-Production_Ready-success) ![Tech](https://img.shields.io/badge/Tech-FastAPI_%7C_Leaflet_%7C_AI-blue) ![Region](https://img.shields.io/badge/Region-Andhra_Pradesh-orange)
+
+**BhoomiAI** is a premium digital farming platform designed specifically for the farmers of Andhra Pradesh. It leverages Artificial Intelligence, GIS Satellite Mapping, and Real-Time Market Data to empower the agricultural community with actionable insights.
+
+---
 
 ## 🌟 Key Features
 
-### 1. Advanced GIS Land Measure
-- **Satellite Mapping**: Uses Esri World Imagery for high-fidelity field identification.
-- **Tapping Tools**: Precision polygon drawing with area (Acres/Hectoares) and perimeter calculation.
-- **Auto-Calculations**: Instantly estimates seed requirements and net profit based on field size.
+### 1. 🛰️ Advanced GIS Land Measure
+- **Satellite Precision**: Uses Esri World Imagery to map fields with high-fidelity.
+- **Tools**: Draw polygons to instantly calculate Area (Acres/Hectares) and Perimeter.
+- **Smart Insights**: Auto-estimates seed requirements and projected profit based on field size.
 
-### 2. Smart Crop Advisor
-- **Regional Optimization**: Tailored recommendations for AP districts (Guntur, Kurnool, Krishna, etc.).
-- **Economic Insights**: Predictive profit analysis and sowing window guidance.
+### 2. 🧠 Smart Crop Advisor
+- **Hyper-Local**: Tailored recommendations for AP districts (Guntur, Kurnool, Krishna, etc.).
+- **Profit Analysis**: Predictive economic modeling to suggest the most profitable crop for the season.
 
-### 3. National Mandi Optimizer
-- **Live Discovery**: Real-time price tracking from Agmarknet.
-- **Trade Engine**: Finds the most profitable markets using a distance-adjusted modal price score.
+### 3. 🍅 National Mandi Optimizer
+- **Live Prices**: Real-time integration with Agmarknet for authentic market prices.
+- **Trade Engine**: Finds the best market to sell at by calculating net profit after transport costs.
+- **Bilingual**: Full English and Telugu support (e.g., "Chilli" ↔ "మిరప").
 
-### 4. Crop Doctor AI
-- **Disease Scanning**: Computer vision simulation for instant botanical diagnosis.
-- **Bilingual Treatment**: Telugu and English protocols for 500+ diseases.
-
-## 🛠️ Tech Stack
-- **Backend**: FastAPI (Python)
-- **GIS Engine**: Leaflet.js
-- **Styling**: Premium Glassmorphism (Vanilla CSS)
-- **Database**: SQLAlchemy + SQLite
-
-## 🚀 Quick Start
-1. **Install Dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-2. **Setup Database**:
-   ```bash
-   python -m app.data.seed_mandi
-   ```
-3. **Run the Mission**:
-   ```bash
-   python main.py
-   ```
-4. **Access UI**: [http://127.0.0.1:8001](http://127.0.0.1:8001)
-
-## 📁 Key Files
-- `main.py`: Core API and Route definitions.
-- `app/static/js/mission.js`: Mission-critical interactive logic and language switching.
-- `app/static/css/prestige.css`: High-end visual styling.
-- `app/templates/base.html`: Global layout with bilingual support.
+### 4. 🌿 Crop Doctor AI
+- **Instant Diagnosis**: Computer vision engine to detect diseases from photos.
+- **Treatment Protocols**: Provides immediate chemical and organic remedies in Telugu and English.
 
 ---
-**BhoomiAI: Built for the Farmer, Powered by Intelligence.**
 
-***
-*Last Synced: 2026-02-02*
+## 🚀 Live Demo
+You can view the live project here:  
+**[👉 Launch BhoomiAI Live](https://bhoomiai-raithu-mithraa.onrender.com)**  
+*(Note: If the link is sleeping, please allow 30 seconds for the free server to wake up.)*
+
+---
+
+## 🛠️ Tech Stack
+- **Backend**: FastAPI (Python High-Performance)
+- **Frontend**: HTML5, Vanilla CSS (Glassmorphism), JavaScript
+- **Mapping**: Leaflet.js + Esri GIS
+- **Database**: SQLAlchemy + SQLite
+- **Deployment**: Render / Docker
+
+## 📦 Local Installation
+To run this project on your machine:
+
+1.  **Clone & Install**:
+    ```bash
+    git clone https://github.com/uravularajesh59-del/BhoomiAi-raithu-mithraa.git
+    cd BhoomAi
+    pip install -r requirements.txt
+    ```
+2.  **Magic Run** (Windows):
+    Double-click `run.bat` to automatically seed data and launch the app in your browser.
+    
+    *Or manually:*
+    ```bash
+    python -m app.data.ap_seed_data
+    python main.py
+    ```
+
+---
+**BhoomiAI: Built for the Farmer, Powered by Intelligence.**  
+*© 2026 AP Digital Farming Mission*
